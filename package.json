@@ -1,0 +1,45 @@
+{
+    "name": "variables-validator",
+    "version": "0.0.0",
+    "description": "A library of validators for variables in Node.js.",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "test": "mocha",
+        "clean": "rm -rf lib",
+        "build": "npm run clean && tsc --build",
+        "docker": "docker compose -f testing/docker-compose.yml --project-directory . up -d --build --force-recreate",
+        "lint": "eslint -c .eslintrc --ext .ts src",
+        "prepare": "npm run build",
+        "format": "prettier --write \"src/**/*.ts\" \"lib/**/*.js|ts\"",
+        "preversion": "npm run lint",
+        "version": "npm run format && git add -A src",
+        "postversion": "git push && git push --tags"
+    },
+    "keywords": [
+        "nodejs",
+        "validate",
+        "validator"
+    ],
+    "author": "Stefan Bauer",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/chai": "^4.3.4",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.8.2",
+        "@types/pg": "^8.6.5",
+        "@typescript-eslint/eslint-plugin": "^5.39.0",
+        "@typescript-eslint/parser": "^5.39.0",
+        "chai": "^4.3.7",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "mocha": "^10.1.0",
+        "prettier": "^2.7.1",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.3"
+    }
+}
